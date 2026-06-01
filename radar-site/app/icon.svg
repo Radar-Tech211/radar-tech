@@ -1,0 +1,22 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="108" fill="#020617"/>
+
+  <circle cx="256" cy="256" r="178" fill="#06111F"/>
+  <circle cx="256" cy="256" r="150" stroke="#22D3EE" stroke-width="18" opacity="0.9"/>
+  <circle cx="256" cy="256" r="96" stroke="#38BDF8" stroke-width="12" opacity="0.55"/>
+  <circle cx="256" cy="256" r="38" fill="#22D3EE"/>
+
+  <path d="M256 256L365 177" stroke="#A5F3FC" stroke-width="24" stroke-linecap="round"/>
+  <path d="M256 256L318 352" stroke="#22D3EE" stroke-width="18" stroke-linecap="round" opacity="0.75"/>
+
+  <path d="M118 256H156" stroke="#22D3EE" stroke-width="18" stroke-linecap="round"/>
+  <path d="M356 256H394" stroke="#22D3EE" stroke-width="18" stroke-linecap="round"/>
+  <path d="M256 118V156" stroke="#22D3EE" stroke-width="18" stroke-linecap="round"/>
+  <path d="M256 356V394" stroke="#22D3EE" stroke-width="18" stroke-linecap="round"/>
+
+  <circle cx="256" cy="256" r="212" stroke="#0E7490" stroke-width="6" stroke-dasharray="18 18" opacity="0.75"/>
+
+  <text x="256" y="468" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="900" fill="#E0F2FE">
+    RT
+  </text>
+</svg>
