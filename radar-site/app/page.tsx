@@ -18,17 +18,17 @@ export default function Home() {
     <main className="min-h-screen bg-zinc-950 text-white">
       <Header />
 
-      <section className="max-w-7xl mx-auto px-4 md:px-6 pt-6 pb-8 md:pt-10 md:pb-12">
-        <div className="relative overflow-hidden rounded-[28px] md:rounded-[36px] border border-zinc-800 bg-zinc-900">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.12),transparent_40%)]" />
+      <section className="mx-auto max-w-7xl px-4 pb-8 pt-6 md:px-6 md:pb-12 md:pt-10">
+        <div className="relative overflow-hidden rounded-[28px] border border-zinc-800 bg-zinc-900 md:rounded-[34px]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.12),transparent_38%)]" />
 
-          <div className="relative grid gap-6 p-5 md:grid-cols-[0.9fr_1.1fr] md:gap-8 md:p-8 lg:p-10">
+          <div className="relative grid gap-6 p-5 md:grid-cols-2 md:gap-8 md:p-8 lg:p-10">
             <div className="flex flex-col justify-center">
-              <p className="text-cyan-400 font-black uppercase text-xs tracking-[0.25em]">
+              <p className="text-xs font-black uppercase tracking-[0.25em] text-cyan-400">
                 Radar Tech
               </p>
 
-              <h1 className="mt-4 max-w-3xl text-3xl font-black leading-tight md:text-5xl lg:text-6xl">
+              <h1 className="mt-4 max-w-3xl text-3xl font-black leading-tight md:text-4xl lg:text-5xl">
                 Tecnologia, IA e futuro sem enrolação.
               </h1>
 
@@ -56,7 +56,7 @@ export default function Home() {
             {destaque && (
               <a
                 href={`/posts/${destaque.slug}`}
-                className="group relative min-h-[360px] overflow-hidden rounded-3xl bg-zinc-950 md:min-h-[420px]"
+                className="group relative min-h-[390px] overflow-hidden rounded-3xl bg-zinc-950 md:min-h-[430px] lg:min-h-[460px]"
               >
                 <img
                   src={destaque.image}
@@ -71,11 +71,11 @@ export default function Home() {
                     {destaque.category}
                   </span>
 
-                  <h2 className="mt-4 max-w-2xl text-2xl font-black leading-tight md:text-3xl lg:text-4xl">
+                  <h2 className="mt-4 text-2xl font-black leading-tight md:text-3xl">
                     {destaque.title}
                   </h2>
 
-                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-300 md:text-base">
+                  <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-zinc-300 md:text-base">
                     {destaque.excerpt}
                   </p>
 
@@ -114,13 +114,13 @@ function CategorySection({
   if (posts.length === 0) return null;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 md:px-6 pb-10 md:pb-16">
-      <div className="flex items-center justify-between gap-4 mb-5 md:mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold leading-tight">
+    <section className="mx-auto max-w-7xl px-4 pb-10 md:px-6 md:pb-16">
+      <div className="mb-5 flex items-center justify-between gap-4 md:mb-8">
+        <h2 className="text-2xl font-bold leading-tight md:text-3xl">
           {title}
         </h2>
 
-        <a href={href} className="text-cyan-400 text-sm font-bold shrink-0">
+        <a href={href} className="shrink-0 text-sm font-bold text-cyan-400">
           Ver mais →
         </a>
       </div>
