@@ -18,25 +18,25 @@ export default function Home() {
     <main className="min-h-screen bg-zinc-950 text-white">
       <Header />
 
-      <section className="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-16">
-        <p className="text-cyan-400 font-bold uppercase text-sm">
+      <section className="max-w-7xl mx-auto px-4 md:px-6 pt-8 pb-6 md:py-16">
+        <p className="text-cyan-400 font-bold uppercase text-xs md:text-sm tracking-wide">
           Radar Tech
         </p>
 
-        <h1 className="text-4xl md:text-7xl font-black mt-4 max-w-5xl leading-tight">
-          Tecnologia, IA, celulares e futuro sem enrolação.
+        <h1 className="text-3xl md:text-7xl font-black mt-3 max-w-5xl leading-tight">
+          Tecnologia, IA e futuro sem enrolação.
         </h1>
 
-        <p className="text-zinc-400 text-lg md:text-xl mt-5 max-w-3xl">
-          Notícias, análises e tendências do mundo tech com linguagem direta.
+        <p className="text-zinc-400 text-base md:text-xl mt-4 max-w-3xl leading-relaxed">
+          Notícias, análises e tendências do mundo tech em linguagem direta.
         </p>
       </section>
 
       <SearchBox posts={posts} />
 
       {destaque && (
-        <section className="max-w-7xl mx-auto px-4 md:px-6 pb-12 md:pb-16">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">
+        <section className="max-w-7xl mx-auto px-4 md:px-6 pb-10 md:pb-16">
+          <h2 className="text-2xl md:text-3xl font-bold mb-5 md:mb-8">
             🔥 Destaque
           </h2>
 
@@ -47,11 +47,11 @@ export default function Home() {
             <img
               src={destaque.image}
               alt={destaque.title}
-              className="w-full h-56 md:h-80 object-cover"
+              className="w-full h-52 md:h-80 object-cover"
             />
 
             <div className="p-5 md:p-8 flex flex-col justify-center">
-              <span className="text-cyan-400 text-sm font-bold">
+              <span className="text-cyan-400 text-xs md:text-sm font-bold uppercase">
                 {destaque.category}
               </span>
 
@@ -59,7 +59,7 @@ export default function Home() {
                 {destaque.title}
               </h3>
 
-              <p className="text-zinc-400 text-base md:text-lg mt-4">
+              <p className="text-zinc-400 text-base md:text-lg mt-4 leading-relaxed">
                 {destaque.excerpt}
               </p>
             </div>
@@ -90,8 +90,8 @@ function CategorySection({
   if (posts.length === 0) return null;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 md:px-6 pb-12 md:pb-16">
-      <div className="flex items-center justify-between gap-4 mb-6 md:mb-8">
+    <section className="max-w-7xl mx-auto px-4 md:px-6 pb-10 md:pb-16">
+      <div className="flex items-center justify-between gap-4 mb-5 md:mb-8">
         <h2 className="text-2xl md:text-3xl font-bold leading-tight">
           {title}
         </h2>
