@@ -11,6 +11,21 @@ type Props = {
   }>;
 };
 
+function formatDate(date: string) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(date));
+}
+
+function getReadingTime(content: string) {
+  const words = content.trim().split(/\s+/).length;
+  const minutes = Math.max(1, Math.ceil(words / 200));
+
+  return `${minutes} min de leitura`;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -23,23 +38,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt,
       images: [post.image],
       type: "article",
+      publishedTime: post.date,
+      authors: ["Radar Tech"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
     },
   };
-}
-
-function getReadingTime(content: string) {
-  const words = content.trim().split(/\s+/).length;
-  const minutes = Math.max(1, Math.ceil(words / 200));
-
-  return `${minutes} min de leitura`;
-}
-
-function formatDate(date: string) {
-  return new Intl.DateTimeFormat("pt-BR", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  }).format(new Date(date));
 }
 
 export default async function PostPage({ params }: Props) {
@@ -56,71 +64,99 @@ export default async function PostPage({ params }: Props) {
     )
     .slice(0, 3);
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: post.title,
+    description: post.excerpt,
+    image: post.image,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      "@type": "Organization",
+      name: "Radar Tech",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Radar Tech",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://radar-tech-ob2f.vercel.app/og-image.png",
+      },
+    },
+  };
+
   return (
     <main className="min-h-screen bg-zinc-950 text-white">
       <Header />
 
-      <article className="max-w-4xl mx-auto px-4 md:px-6 py-10 md:py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleJsonLd),
+        }}
+      />
+
+      <article className="mx-auto max-w-5xl px-4 py-10 md:px-6 md:py-14">
         <a
           href="/noticias"
-          className="inline-flex rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm text-cyan-400 hover:border-cyan-400"
+          className="inline-flex rounded-full border border-zinc-800 px-4 py-2 text-sm font-bold text-cyan-400 transition hover:border-cyan-400"
         >
-          ← Voltar para Notícias
+          ← Voltar para notícias
         </a>
 
-        <div className="mt-8 flex flex-wrap items-center gap-3 text-sm">
-          <span className="rounded-full bg-cyan-400 px-3 py-1 font-black uppercase text-zinc-950">
+        <header className="mt-8">
+          <p className="text-sm font-black uppercase tracking-[0.25em] text-cyan-400">
             {post.category}
-          </span>
+          </p>
 
-          <span className="text-zinc-500">
-            {formatDate(post.date)}
-          </span>
+          <h1 className="mt-4 text-4xl font-black leading-tight md:text-6xl">
+            {post.title}
+          </h1>
 
-          <span className="text-zinc-600">
-            •
-          </span>
+          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-zinc-400 md:text-xl">
+            {post.excerpt}
+          </p>
 
-          <span className="text-zinc-500">
-            ⏱️ {getReadingTime(post.content)}
-          </span>
-        </div>
-
-        <h1 className="mt-5 text-3xl md:text-6xl font-black leading-tight">
-          {post.title}
-        </h1>
-
-        <p className="mt-5 text-lg md:text-xl leading-relaxed text-zinc-400">
-          {post.excerpt}
-        </p>
+          <div className="mt-6 flex flex-wrap gap-3 text-sm text-zinc-500">
+            <span>Por Radar Tech</span>
+            <span>•</span>
+            <span>{formatDate(post.date)}</span>
+            <span>•</span>
+            <span>{getReadingTime(post.content)}</span>
+          </div>
+        </header>
 
         <img
           src={post.image}
           alt={post.title}
-          className="mt-8 md:mt-10 h-56 md:h-80 w-full rounded-2xl md:rounded-3xl object-cover"
+          className="mt-10 h-72 w-full rounded-3xl object-cover md:h-[460px]"
         />
 
         <div
-          className="prose prose-invert prose-cyan max-w-none mt-8 md:mt-10 text-base md:text-lg leading-relaxed"
+          className="prose prose-invert prose-cyan mt-10 max-w-none prose-headings:font-black prose-p:text-zinc-300 prose-a:font-bold prose-a:text-cyan-400 prose-img:rounded-2xl"
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </article>
 
       {relatedPosts.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 md:px-6 pb-12 md:pb-16">
-          <div className="mb-6 md:mb-8">
-            <p className="text-cyan-400 text-sm font-bold uppercase">
-              Continue lendo
-            </p>
-
-            <h2 className="mt-2 text-2xl md:text-3xl font-black">
-              Você também pode gostar
+        <section className="mx-auto max-w-7xl px-4 pb-14 md:px-6 md:pb-20">
+          <div className="mb-6 flex items-center justify-between gap-4">
+            <h2 className="text-2xl font-black md:text-3xl">
+              Leia também
             </h2>
+
+            <a
+              href={`/${post.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
+              className="shrink-0 text-sm font-bold text-cyan-400"
+            >
+              Ver categoria →
+            </a>
           </div>
 
           <div className="grid gap-5 md:grid-cols-3 md:gap-6">
-            {relatedPosts.map((item) => (
-              <PostCard key={item.slug} post={item} />
+            {relatedPosts.map((related) => (
+              <PostCard key={related.slug} post={related} />
             ))}
           </div>
         </section>
