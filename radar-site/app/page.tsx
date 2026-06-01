@@ -18,16 +18,16 @@ export default function Home() {
     <main className="min-h-screen bg-zinc-950 text-white">
       <Header />
 
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <p className="text-cyan-400 font-bold uppercase">
+      <section className="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-16">
+        <p className="text-cyan-400 font-bold uppercase text-sm">
           Radar Tech
         </p>
 
-        <h1 className="text-5xl md:text-7xl font-black mt-4 max-w-5xl">
+        <h1 className="text-4xl md:text-7xl font-black mt-4 max-w-5xl leading-tight">
           Tecnologia, IA, celulares e futuro sem enrolação.
         </h1>
 
-        <p className="text-zinc-400 text-xl mt-6 max-w-3xl">
+        <p className="text-zinc-400 text-lg md:text-xl mt-5 max-w-3xl">
           Notícias, análises e tendências do mundo tech com linguagem direta.
         </p>
       </section>
@@ -35,31 +35,31 @@ export default function Home() {
       <SearchBox posts={posts} />
 
       {destaque && (
-        <section className="max-w-7xl mx-auto px-6 pb-16">
-          <h2 className="text-3xl font-bold mb-8">
+        <section className="max-w-7xl mx-auto px-4 md:px-6 pb-12 md:pb-16">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">
             🔥 Destaque
           </h2>
 
           <a
             href={`/posts/${destaque.slug}`}
-            className="grid md:grid-cols-2 bg-zinc-900 rounded-3xl overflow-hidden hover:bg-zinc-800 transition"
+            className="grid md:grid-cols-2 bg-zinc-900 rounded-2xl md:rounded-3xl overflow-hidden hover:bg-zinc-800 transition"
           >
             <img
               src={destaque.image}
               alt={destaque.title}
-              className="w-full h-80 object-cover"
+              className="w-full h-56 md:h-80 object-cover"
             />
 
-            <div className="p-8 flex flex-col justify-center">
+            <div className="p-5 md:p-8 flex flex-col justify-center">
               <span className="text-cyan-400 text-sm font-bold">
                 {destaque.category}
               </span>
 
-              <h3 className="text-4xl font-black mt-3">
+              <h3 className="text-2xl md:text-4xl font-black mt-3 leading-tight">
                 {destaque.title}
               </h3>
 
-              <p className="text-zinc-400 text-lg mt-4">
+              <p className="text-zinc-400 text-base md:text-lg mt-4">
                 {destaque.excerpt}
               </p>
             </div>
@@ -67,35 +67,11 @@ export default function Home() {
         </section>
       )}
 
-      <CategorySection
-        title="🤖 Inteligência Artificial"
-        href="/ia"
-        posts={ia}
-      />
-
-      <CategorySection
-        title="📱 Celulares"
-        href="/celulares"
-        posts={celulares}
-      />
-
-      <CategorySection
-        title="🦾 Robótica"
-        href="/robotica"
-        posts={robotica}
-      />
-
-      <CategorySection
-        title="🎮 Games"
-        href="/games"
-        posts={games}
-      />
-
-      <CategorySection
-        title="🖥️ Hardware"
-        href="/hardware"
-        posts={hardware}
-      />
+      <CategorySection title="🤖 Inteligência Artificial" href="/ia" posts={ia} />
+      <CategorySection title="📱 Celulares" href="/celulares" posts={celulares} />
+      <CategorySection title="🦾 Robótica" href="/robotica" posts={robotica} />
+      <CategorySection title="🎮 Games" href="/games" posts={games} />
+      <CategorySection title="🖥️ Hardware" href="/hardware" posts={hardware} />
 
       <Footer />
     </main>
@@ -114,21 +90,21 @@ function CategorySection({
   if (posts.length === 0) return null;
 
   return (
-    <section className="max-w-7xl mx-auto px-6 pb-16">
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl font-bold">
+    <section className="max-w-7xl mx-auto px-4 md:px-6 pb-12 md:pb-16">
+      <div className="flex items-center justify-between gap-4 mb-6 md:mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold leading-tight">
           {title}
         </h2>
 
         <a
           href={href}
-          className="text-cyan-400 text-sm font-bold"
+          className="text-cyan-400 text-sm font-bold shrink-0"
         >
           Ver mais →
         </a>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid gap-5 md:grid-cols-3 md:gap-6">
         {posts.map((post) => (
           <PostCard key={post.slug} post={post} />
         ))}
