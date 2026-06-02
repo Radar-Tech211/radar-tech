@@ -1,25 +1,18 @@
 import Image from "next/image";
 import type { Post } from "../lib/posts";
+import { formatShortDate, readingTime } from "../lib/formatDate";
 
 type PostCardProps = {
   post: Post;
 };
 
-function formatDate(date: string) {
-  return new Intl.DateTimeFormat("pt-BR", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(new Date(date));
-}
-
 export default function PostCard({ post }: PostCardProps) {
   return (
     <a
       href={`/posts/${post.slug}`}
-      className="group block overflow-hidden rounded-2xl bg-zinc-900 transition hover:bg-zinc-800 active:scale-[0.99]"
+      className="group block overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 transition hover:border-cyan-400 hover:bg-zinc-800 active:scale-[0.99]"
     >
-      <div className="relative h-40 w-full md:h-44">
+      <div className="relative h-44 w-full overflow-hidden">
         <Image
           src={post.image}
           alt={post.title}
@@ -29,16 +22,22 @@ export default function PostCard({ post }: PostCardProps) {
         />
       </div>
 
-      <div className="p-4 md:p-5">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-black uppercase tracking-wide text-cyan-400">
+      <div className="p-5">
+        <div className="flex flex-wrap items-center gap-2 text-xs">
+          <span className="font-black uppercase tracking-wide text-cyan-400">
             {post.category}
           </span>
 
-          <span className="text-xs text-zinc-600">•</span>
+          <span className="text-zinc-600">•</span>
 
-          <span className="text-xs text-zinc-500">
-            {formatDate(post.date)}
+          <span className="text-zinc-500">
+            {formatShortDate(post.date)}
+          </span>
+
+          <span className="text-zinc-600">•</span>
+
+          <span className="text-zinc-500">
+            {readingTime(post.content)}
           </span>
         </div>
 
