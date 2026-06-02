@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Post } from "../lib/posts";
 
 type PostCardProps = {
@@ -18,11 +19,15 @@ export default function PostCard({ post }: PostCardProps) {
       href={`/posts/${post.slug}`}
       className="group block overflow-hidden rounded-2xl bg-zinc-900 transition hover:bg-zinc-800 active:scale-[0.99]"
     >
-      <img
-        src={post.image}
-        alt={post.title}
-        className="h-40 w-full object-cover transition duration-500 group-hover:scale-105 md:h-44"
-      />
+      <div className="relative h-40 w-full md:h-44">
+        <Image
+          src={post.image}
+          alt={post.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover transition duration-500 group-hover:scale-105"
+        />
+      </div>
 
       <div className="p-4 md:p-5">
         <div className="flex flex-wrap items-center gap-2">
