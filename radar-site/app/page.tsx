@@ -1,3 +1,4 @@
+import Newsletter from "../components/Newsletter";
 import SearchBox from "../components/SearchBox";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -128,6 +129,7 @@ export default function Home() {
       <CategorySection title="🎮 Games" href="/games" posts={games} />
       <CategorySection title="🖥️ Hardware" href="/hardware" posts={hardware} />
 
+         <Newsletter />
       <Footer />
     </main>
   );
