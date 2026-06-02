@@ -14,6 +14,21 @@ export default function Home() {
   const games = getPostsByCategory("GAMES").slice(0, 3);
   const hardware = getPostsByCategory("HARDWARE").slice(0, 3);
 
+  const stats = [
+    {
+      label: "artigos publicados",
+      value: posts.length,
+    },
+    {
+      label: "categorias tech",
+      value: 5,
+    },
+    {
+      label: "foco em tecnologia",
+      value: "100%",
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-zinc-950 text-white">
       <Header />
@@ -50,6 +65,22 @@ export default function Home() {
                 >
                   Explorar IA
                 </a>
+              </div>
+
+              <div className="mt-8 grid grid-cols-3 gap-3">
+                {stats.map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-4"
+                  >
+                    <p className="text-2xl font-black text-cyan-400">
+                      {item.value}
+                    </p>
+                    <p className="mt-1 text-xs leading-tight text-zinc-500">
+                      {item.label}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
 
