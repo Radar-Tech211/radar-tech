@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/robotica",
     "/games",
     "/hardware",
+    "/sobre",
   ].map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),

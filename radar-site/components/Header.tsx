@@ -6,6 +6,7 @@ export default function Header() {
     { href: "/robotica", label: "Robótica" },
     { href: "/games", label: "Games" },
     { href: "/hardware", label: "Hardware" },
+    { href: "/sobre", label: "Sobre" },
   ];
 
   return (
@@ -14,13 +15,16 @@ export default function Header() {
         <div className="flex items-center justify-between gap-6">
           <a href="/" className="flex min-w-0 items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-cyan-400 shadow-lg shadow-cyan-400/20">
-              <span className="text-lg font-black text-zinc-950">RT</span>
+              <span className="text-lg font-black text-zinc-950">
+                RT
+              </span>
             </div>
 
             <div className="min-w-0 leading-none">
               <p className="text-2xl font-black tracking-tight md:text-3xl">
                 Radar<span className="text-cyan-400">Tech</span>
               </p>
+
               <p className="truncate text-[10px] uppercase tracking-[0.25em] text-zinc-500 md:text-xs">
                 tecnologia sem enrolação
               </p>
@@ -29,7 +33,11 @@ export default function Header() {
 
           <nav className="hidden items-center gap-6 text-sm text-zinc-300 md:flex">
             {links.map((link) => (
-              <a key={link.href} href={link.href} className="hover:text-cyan-400">
+              <a
+                key={link.href}
+                href={link.href}
+                className="transition hover:text-cyan-400"
+              >
                 {link.label}
               </a>
             ))}
@@ -41,7 +49,7 @@ export default function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2 hover:border-cyan-400 hover:text-cyan-400"
+              className="rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2 transition hover:border-cyan-400 hover:text-cyan-400"
             >
               {link.label}
             </a>
